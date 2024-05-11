@@ -1,0 +1,33 @@
+    <!-- HTML -->
+    <span class="hours"></span>
+    <span class="minutes"></span>
+    <span class="seconds"></span>
+
+jQuery(document).ready(function () {
+    var countDownDate = new Date("jan 5, 2026 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        if (distance < 0) {
+            clearInterval(x);
+            jQuery(".hours").html("exp");
+            jQuery(".minutes").html("exp");
+            jQuery(".seconds").html("exp");
+        } else {
+            // Time calculations for hours, minutes, and seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Output the result in the respective elements with their IDs
+            jQuery(".hours").html(hours);
+            jQuery(".minutes").html(minutes);
+            jQuery(".seconds").html(seconds);
+        }
+    }, 1000);
+});
